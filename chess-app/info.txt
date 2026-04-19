@@ -1,0 +1,75 @@
+chess-app/
+│
+├── client/
+│   ├── node_modules/            # auto-generated dependency hell
+│   │   └── ...thousands of files
+│   │
+│   ├── public/
+│   │   └── vite.svg
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChessBoard.jsx
+│   │   │   ├── GameInfo.jsx
+│   │   │   └── Square.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   └── Game.jsx
+│   │   │
+│   │   ├── socket/
+│   │   │   └── socket.js
+│   │   │
+│   │   ├── api/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── chess/
+│   │   │   └── game.js
+│   │   │
+│   │   ├── hooks/
+│   │   │   └── useGame.js
+│   │   │
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   │
+│   ├── .gitignore
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   └── README.md
+│
+├── server/
+│   ├── node_modules/            # again, chaos but necessary
+│   │   └── ...
+│   │
+│   ├── sockets/
+│   │   └── gameSocket.js
+│   │
+│   ├── game/
+│   │   └── gameManager.js
+│   │
+│   ├── models/
+│   │   └── Game.js
+│   │
+│   ├── routes/
+│   │   └── authRoutes.js
+│   │
+│   ├── utils/
+│   │   └── helpers.js
+│   │
+│   ├── .env
+│   ├── .gitignore
+│   ├── server.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── README.md
+│
+├── .gitignore
+├── package.json (optional root config)
+├── package-lock.json
+└── README.md
