@@ -12,7 +12,7 @@ function App() {
     socket.on("message", (msg) => {
       console.log("Server says:", msg);
     });
-  }, []);
+  }, []); // [] means this hook will run once only when the component loads
 
   return <h1>Chess App</h1>;
 }
