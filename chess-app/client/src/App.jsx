@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { Chessboard } from "react-chessboard";
+import { Chess } from "chess.js";
 import game from "./chess/chess";
 
 function App() {
   const [position, setPosition] = useState(game.fen());
 
   function onDrop(sourceSquare, targetSquare) {
-    const move = game.move({
+    const gameCopy = new Chess(game.fen());
+
+    const move = gameCopy.move({
       from: sourceSquare,
       to: targetSquare,
-      promotion: "q", // always promote to a queen for example simplicity
+      promotion: "q",
     });
 
-    // illegal move
     if (move === null) return false;
 
+    game.move(move);
     setPosition(game.fen());
     return true;
   }
