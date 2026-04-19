@@ -1,20 +1,30 @@
-import { useEffect } from "react";
-import { io } from "socket.io-client";
+import { useState } from "react";
+import { Chessboard } from "react-chessboard";
+import game from "./chess/chess";
 
 function App() {
-  useEffect(() => {
-    const socket = io("http://localhost:5000");
+  const [position, setPosition] = useState(game.fen());
 
-    socket.on("connect", () => {
-      console.log("Connected:", socket.id);
+  function onDrop(sourceSquare, targetSquare) {
+    const move = game.move({
+      from: sourceSquare,
+      to: targetSquare,
+      promotion: "q", // always promote to a queen for example simplicity
     });
 
-    socket.on("message", (msg) => {
-      console.log("Server says:", msg);
-    });
-  }, []); // [] means this hook will run once only when the component loads
+    // illegal move
+    if (move === null) return false;
 
-  return <h1>Chess App</h1>;
+    setPosition(game.fen());
+    return true;
+  }
+
+  return (
+    <div className="app">
+      <h1>Chess App</h1>
+      <Chessboard position={position} onPieceDrop={onDrop} />
+    </div>
+  );
 }
 
 export default App;
