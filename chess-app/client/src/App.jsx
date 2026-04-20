@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="app">
       <h1>Chess App</h1>
-      <div style={{ width: "500px", margin: "0 auto" }}>
+      <div style={{ width: "800px", margin: "0 auto" }}>
         <Chessboard
           className="chessboard"
           position={position}
