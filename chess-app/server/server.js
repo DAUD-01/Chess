@@ -18,7 +18,6 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log("User Connected:", socket.id);
 
-  // 🟢 receive move from one player
   socket.on("move", (data) => {
     console.log("Move received:", data);
 
