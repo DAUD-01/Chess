@@ -13,11 +13,15 @@ function App() {
     socket.on("move", (data) => {
       console.log("Opponent move:", data);
 
-      game.move({
-        from: data.from,
-        to: data.to,
-        promotion: "q",
-      });
+      try {
+        game.move({
+          from: data.from,
+          to: data.to,
+          promotion: "q",
+        });
+      } catch {
+        return;
+      }
 
       setPosition(game.fen());
     });
@@ -25,12 +29,20 @@ function App() {
     return () => socket.off("move");
   }, []);
 
-  function onDrop(sourceSquare, targetSquare) {
-    const move = game.move({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q",
-    });
+  function onDrop({ sourceSquare, targetSquare }) {
+    if (!targetSquare) return false;
+
+    let move = null;
+
+    try {
+      move = game.move({
+        from: sourceSquare,
+        to: targetSquare,
+        promotion: "q",
+      });
+    } catch {
+      return false;
+    }
 
     if (!move) return false;
 
@@ -52,15 +64,16 @@ function App() {
           width: "800px",
           margin: "0 auto",
           position: "relative",
-          zIndex: 1,
+          zIndex: 100,
         }}
       >
         <Chessboard
-          className="chessboard"
-          position={position}
-          onPieceDrop={onDrop}
-          animationDuration={200}
-          boardOrientation="white"
+          options={{
+            position,
+            onPieceDrop: onDrop,
+            animationDurationInMs: 200,
+            boardOrientation: "white",
+          }}
         />
       </div>
     </div>
