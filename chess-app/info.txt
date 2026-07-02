@@ -44,7 +44,7 @@ chess-app/
 │   └── README.md
 │
 ├── server/
-│   ├── node_modules/            # again, chaos but necessary
+│   ├── node_modules/           
 │   │   └── ...
 │   │
 │   ├── sockets/

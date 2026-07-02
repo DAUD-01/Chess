@@ -57,14 +57,14 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app-container">
       <h1>Chess App</h1>
       <div
         style={{
-          width: "800px",
+          width: "400px",
           margin: "0 auto",
           position: "relative",
-          zIndex: 100,
+          zIndex: 1,
         }}
       >
         <Chessboard
