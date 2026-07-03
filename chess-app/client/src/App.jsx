@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import { Chessboard } from "react-chessboard";
-import { Chess } from "chess.js";
+import { Chessboard } from "react-chessboard"; // UI chess board
+import game from "./chess/chess.js"; // chess logic
 
 const socket = io("http://localhost:5000");
-const game = new Chess();
 
 function App() {
   const [position, setPosition] = useState(game.fen());
@@ -23,13 +22,13 @@ function App() {
         return;
       }
 
-      setPosition(game.fen());
+      setPosition(game.fen()); // set position and update board visually
     });
 
     return () => socket.off("move");
   }, []);
 
-  function onDrop({ sourceSquare, targetSquare }) {
+  function onDrop(sourceSquare, targetSquare) {
     if (!targetSquare) return false;
 
     let move = null;
@@ -57,14 +56,17 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div
+      className="app-container"
+      style={{
+        textAlign: "center",
+      }}
+    >
       <h1>Chess App</h1>
       <div
         style={{
-          width: "400px",
+          width: "500px",
           margin: "0 auto",
-          position: "relative",
-          zIndex: 1,
         }}
       >
         <Chessboard

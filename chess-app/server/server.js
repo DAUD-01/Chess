@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
-import cors from "cors"; // allows frontend to connect with backend
+import cors from "cors"; // middleware: allows frontend to connect with backend
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -15,7 +15,7 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
+io.on("connection", (socket) => { // run whenever a client connects
   console.log("User Connected:", socket.id);
 
   socket.on("move", (data) => {
